@@ -1,0 +1,20 @@
+class Solution {
+public:
+    vector<int> findClosestElements(vector<int>& arr, int k, int x) {
+        vector<pair<int,int>>t1;
+        for(auto num:arr){
+            int temp=abs(num-x);
+            t1.push_back({temp,num});
+        }
+        sort(t1.begin(),t1.end());
+        vector<int>ans;
+        for(int i=0;i<k;i++){
+            ans.push_back(t1[i].second);
+        }
+        sort(ans.begin(),ans.end());
+        return ans;
+    }
+};
+
+//using n*logn complexity here 
+//not binary search approach it is
