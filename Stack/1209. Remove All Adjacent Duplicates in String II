@@ -1,0 +1,28 @@
+class Solution {
+public:
+    string removeDuplicates(string s, int k) {
+        stack<pair<char,int>>st;
+        for(auto ch:s){
+            if(!st.empty() && st.top().first==ch){
+                st.top().second++;
+                if(st.top().second==k){
+                    st.pop();
+                }
+            }
+            else {
+                st.push({ch,1});
+            }
+        }
+        string arr;
+        while(!st.empty()){
+            arr=string(st.top().second,st.top().first)+arr;
+            st.pop();
+        }
+        return arr;
+    }
+};
+
+//here we only store those character whose are are greater than k consecutablely.
+//use string(count,character) which is like string(4,x)=="xxxx" 
+//noticeablely here we use concatenation of array but after adding the string then add previous part
+//because in stack we can take the element sequencially in this way only.
