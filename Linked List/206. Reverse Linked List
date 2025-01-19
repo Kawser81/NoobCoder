@@ -1,0 +1,19 @@
+class Solution {
+public:
+    ListNode* head1 = NULL;
+
+    void insert(int value) {
+        ListNode* temp = new ListNode();
+        temp->val=value;
+        temp->next=head1;
+        head1=temp;
+    }
+
+    ListNode* reverseList(ListNode* head) {
+        while (head != NULL) {
+            insert(head->val);
+            head=head->next;
+        }
+        return head1;
+    }
+};
