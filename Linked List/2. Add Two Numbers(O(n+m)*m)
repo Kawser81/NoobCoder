@@ -1,0 +1,58 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    struct ListNode* head=NULL;
+
+    void insert(int value){
+        struct ListNode* temp=  new ListNode();
+        temp->val=value;
+        temp->next=NULL;
+        if(head==NULL){
+            temp->next=head;
+            head=temp;
+        }
+        else {
+            struct ListNode* temp1=head;
+            while(temp1->next!=NULL){
+                temp1=temp1->next;
+            }
+            temp1->next=temp;
+        }
+    }
+
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        struct ListNode* temp=l1;
+        string arr1="";
+        string arr2="";
+        while(temp!=NULL){
+            arr1=to_string(temp->val)+arr1;
+            temp=temp->next;
+        }
+        temp=l2;
+        while(temp!=NULL){
+            arr2=to_string(temp->val)+arr2;
+            temp=temp->next;
+        }
+        int ans=stoi(arr1)+stoi(arr2);
+        string arr3=to_string(ans);
+        //reverse(arr3.begin(),arr3.end());
+        for(int i=arr3.size()-1;i>=0;i--){
+            int x=arr3[i]-'0';
+            insert(x);
+        }
+        return head;
+    }
+};
+
+//time complexity in large here O((m+n)*m)
+//convert a char type to a int type here in this int x=arr3[i]-'0'
+//use the ascii value idea and convert this char to int
