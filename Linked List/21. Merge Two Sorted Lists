@@ -1,0 +1,45 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    struct ListNode* head=NULL;
+    void insertAsAscending(int value){
+        struct ListNode* temp= new ListNode();
+        temp->val=value;
+        struct ListNode* temp1=head;
+        if(head==NULL || temp->val<head->val){
+            temp->next=head;
+            head=temp;
+        }
+        else {
+            struct ListNode* temp2=temp1->next;
+            while(temp2!=NULL && temp->val>=temp2->val){
+                temp1=temp2;
+                temp2=temp2->next;
+            }
+            temp1->next=temp;
+            temp->next=temp2;
+        }
+    }
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        struct ListNode* temp1=list1;
+        while(list1!=NULL){
+            insertAsAscending(list1->val);
+            list1=list1->next;
+        }
+        temp1=list2;
+        while(list2!=NULL){
+            insertAsAscending(list2->val);
+            list2=list2->next;
+        }
+        return head;
+    }
+};
