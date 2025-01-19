@@ -1,0 +1,27 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        //for slow we use hare and for fast use tortoise
+        struct ListNode* hare=head;
+        struct ListNode* tortoise=head;
+        while(hare!=NULL && tortoise!=NULL && tortoise->next!=NULL){
+            hare=hare->next;
+            tortoise=tortoise->next->next;
+            if(hare==tortoise){
+                return true;
+            }
+        }
+        return false;
+    }
+};
+
+//in line 18: compare the node, not the next list like (hare->next==tortoise->next)
+//in line 15: if the list is Null then need to break the loop immediately
