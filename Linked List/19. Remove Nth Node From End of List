@@ -1,0 +1,34 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        struct ListNode* dummy=new ListNode(-1);
+        dummy->next=head;
+        struct ListNode* firstptr=dummy;
+        struct ListNode* secondptr=dummy;
+        for(int i=1;i<=n;i++){
+            secondptr=secondptr->next;
+        }
+        while(secondptr->next!=NULL){
+            firstptr=firstptr->next;
+            secondptr=secondptr->next;
+        }
+        firstptr->next=firstptr->next->next;
+        return dummy->next;
+
+    }
+};
+
+//only one iterationo to solve this problem
+//use two pointer where the second pointer will ahead n steps of the first pointer 
+//use dummy node to get extra benifit to handle the edge cases
+
