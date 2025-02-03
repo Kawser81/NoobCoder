@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool canJump(vector<int>& nums) {
+        int n=nums.size();
+        if(n==1){
+            return true;
+        }
+        if(nums[0]==0){
+            return false;
+        }
+        int lastIndex=n-1;
+        int temp=nums[0];
+        int i=0;
+        while(i<=temp){
+            temp=max(temp,i+nums[i]);//how further jump 
+            if(temp>=lastIndex){
+                return true;
+            }
+            i++;
+        }
+        return false;
+    }
+};
