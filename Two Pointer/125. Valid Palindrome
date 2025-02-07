@@ -1,0 +1,35 @@
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        vector<char>temp;
+        for(auto t:s){
+            if (isalnum(t)) { 
+                temp.push_back(tolower(t));
+            }
+
+            //isalnum() contain capital and small letter
+            // also contain the digit of 0-9
+
+            // if(t>='A' && t<='Z'){
+            //     char x=tolower(t);
+            //     temp.push_back(x);
+            // }
+            // if(t>='a' && t<='z'){
+            //     temp.push_back(t);
+            // }
+            // if(t>='0' && t<='9'){
+            //     temp.push_back(t);
+            // }
+        }
+        int start=0;
+        int last=temp.size()-1;
+        while(start<last){
+            if(temp[start]!=temp[last]){
+                return false;
+            }
+            start++;
+            last--;
+        }
+        return true;
+    }
+};
