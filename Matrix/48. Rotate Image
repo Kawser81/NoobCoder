@@ -1,0 +1,22 @@
+class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix) {
+        int n=matrix.size();
+        vector<vector<int>>temp(n);
+        for(int row=n-1;row>=0;row--){
+            for(int col=0;col<=n-1;col++){
+                temp[col].push_back(matrix[row][col]);
+            }
+        }
+        matrix=temp;
+        return;
+    }
+};
+
+//vector<vector<int>>temp; this one gives run time error
+//vector<vector<int>>temp(n); //no run time error
+//When you try to do temp[col].push_back(matrix[row][col]);, it assumes temp[col] exists. But it doesn't, leading to an out-of-bounds access and a runtime error.
+
+// Why does vector<vector<int>> temp(n); work fine?
+//This initializes temp with n empty vectors (but each row is still empty).
+//Now, temp[col] is a valid vector, so push_back() works without issues.
