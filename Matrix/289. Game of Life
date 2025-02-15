@@ -1,0 +1,47 @@
+class Solution {
+public:
+    void gameOfLife(vector<vector<int>>& board) {
+        int m = board.size();  // Number of rows
+        int n = board[0].size();  // Number of columns
+
+        vector<pair<int, int>> temp; 
+        vector<vector<int>> ans = board; 
+
+        for (int row = 0; row < m; row++) {
+            for (int col = 0; col < n; col++) {
+                int count0 = 0, count1 = 0; 
+
+                if (row + 1 < m)         (board[row + 1][col] == 0) ? count0++ : count1++;
+                if (row - 1 >= 0)        (board[row - 1][col] == 0) ? count0++ : count1++;
+                if (col + 1 < n)         (board[row][col + 1] == 0) ? count0++ : count1++;
+                if (col - 1 >= 0)        (board[row][col - 1] == 0) ? count0++ : count1++;
+                if (row - 1 >= 0 && col - 1 >= 0)  (board[row - 1][col - 1] == 0) ? count0++ : count1++;
+                if (row + 1 < m && col + 1 < n)    (board[row + 1][col + 1] == 0) ? count0++ : count1++;
+                if (row - 1 >= 0 && col + 1 < n)   (board[row - 1][col + 1] == 0) ? count0++ : count1++;
+                if (row + 1 < m && col - 1 >= 0)   (board[row + 1][col - 1] == 0) ? count0++ : count1++;
+
+                temp.push_back({count0, count1});
+            }
+        }
+
+        int index = 0; // Track index in temp
+        for (int row = 0; row < m; row++) {
+            for (int col = 0; col < n; col++) {
+                int deadCount = temp[index].first;
+                int liveCount = temp[index].second;
+
+                if (board[row][col] == 1) { // Alive cell
+                    if (liveCount < 2 || liveCount > 3) {
+                        ans[row][col] = 0; // Dies
+                    }
+                } else { // Dead cell
+                    if (liveCount == 3) {
+                        ans[row][col] = 1; // Becomes alive
+                    }
+                }
+                index++;
+            }
+        }
+        board = ans;
+    }
+};
