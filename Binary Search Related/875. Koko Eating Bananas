@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int minEatingSpeed(vector<int>& piles, int h) {
+        int n=piles.size();
+        int high=0;
+        int low=1;
+        long long int sum=0;
+        int ans=0;
+        for(auto num:piles){
+            high=max(high,num);
+        }
+        while(low<=high){
+            sum=0;
+            int k=low+(high-low)/2;
+            for(int i=0;i<n;i++){
+                sum=sum+ceil((double)piles[i]/k); //use double else it will not take the value of ceiling. example: if not use double then ceil(2) like this not ceil(2.5)
+            }
+            if(sum<=h){
+                ans=k;
+                high=k-1;
+            }
+            else{
+                low=k+1;
+            }
+        }
+        return ans;
+    }
+};
