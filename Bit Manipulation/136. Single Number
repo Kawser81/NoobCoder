@@ -1,0 +1,33 @@
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        map<int,int>temp;
+        int ans=0;
+        for(auto v:nums){
+            ans=ans^v; //X-OR operator for 0,1 or 1,0 it will be 1 otherwise it will be 0
+        }
+
+        // for(auto v:nums){
+        //     temp[v]++;
+        // }
+        // int ans=0;
+        // for(auto num:temp){
+        //     if(num.second==1){
+        //         ans=num.first;
+        //     }
+        // }
+        return ans;
+    }
+};
+
+//Input: nums = [4,1,2,1,2]  Output: 4
+//if we use bitwise operation then it will be like this
+//ans=ans^v
+//nums=[1,1,2,2,4]
+//ans=0^1=001(1)
+//ans=1^1=000(0)
+//ans=0^2=010(2)
+//ans=2^2=000(0)
+//ans=0^4=100(4)
+//finally answer is 4
+//thats means if we use X-OR operator its also works here in Time com O(n) and Space O(1)
