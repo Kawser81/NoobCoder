@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int rangeBitwiseAnd(int left, int right) {
+        int count=0;
+        while(left!=right){
+            left/=2;
+            right/=2;
+            count++;
+        }
+        return left<<count;
+    }
+};
+
+//left = 5, right = 7 
+//5-101 6-110 7-111 
+//5/2=2 7/2=3 then 3/2=1 2/2=1 count=2
+//left=1 1<<2 then 100=4 
+//complexity O(logn) but if apply O(n) then time limit error occurred left = 1073741824 right =2147483647
+//left=32 right=40 
+//count=4 left=2 right=2 
+//2<<4=100000(32)
