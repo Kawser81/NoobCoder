@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        int n=nums.size();
+        int temp=0;
+        int ans=0;
+        for(int i=0;i<n;i++){
+            temp++;
+            ans=ans^nums[i]^temp;
+        }
+        return ans;
+
+        //create another list which is belongs to 0-n and we know that only same X-OR gives the result 0
+        //if use 0-3 for the first test case then remain the missing value
+
+        // sort(nums.begin(),nums.end());
+        // int n=nums.size();
+        // int ans=0;
+        // if(nums[0]!=0){
+        //     return 0;
+        // }
+        // if(nums[n-1]!=n){
+        //     return n;
+        // }
+        // for(int i=0;i<n-1;i++){
+        //     if(nums[i]+1!=nums[i+1]){
+        //         ans=nums[i]+1;
+        //     }
+        // }
+        // return ans;
+    }
+};
