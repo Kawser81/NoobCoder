@@ -1,0 +1,36 @@
+class Solution {
+public:
+    void combination(int i,string &digits, vector<string>&ans, string temp, unordered_map<char,string>&map){
+        if(i==digits.size()){
+            ans.push_back(temp);
+            return;
+        }
+
+        string st=map[digits[i]];
+        for(int j=0;j<st.size();j++){
+            temp.push_back(st[j]);
+            combination(i+1,digits,ans,temp,map);
+            temp.pop_back();
+        }
+    }
+    vector<string> letterCombinations(string digits) {
+        vector<string>ans;
+        string temp;
+        unordered_map<char,string>map;
+
+        if(digits.size()==0){
+            return ans;
+        }
+        
+        map['2']="abc";
+        map['3']="def";
+        map['4']="ghi";
+        map['5']="jkl";
+        map['6']="mno";
+        map['7']="pqrs";
+        map['8']="tuv";
+        map['9']="wxyz";
+        combination(0,digits,ans,temp,map);
+        return ans;
+    }
+};
